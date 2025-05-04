@@ -2,38 +2,50 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>招呼語練習</title>
   <style>
     body {
       font-family: sans-serif;
       background-color: #f9f9f9;
-      padding: 20px;
+      padding: 10px;
+      margin: 0;
     }
+
     h1 {
       text-align: center;
+      font-size: 1.6em;
+      margin-top: 20px;
     }
+
     .controls {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 15px 0;
     }
+
     .controls label {
-      margin-right: 10px;
+      margin-right: 5px;
       font-weight: bold;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-size: 0.95em;
     }
+
     th, td {
       border: 1px solid #ddd;
-      padding: 12px;
+      padding: 10px;
       text-align: center;
     }
+
     th {
       background-color: #f0f0f0;
     }
+
     button {
       padding: 6px 12px;
       border: none;
@@ -42,8 +54,32 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #2563eb;
+    }
+
+    /* ✅ 手機：表格可橫向滑動 */
+    @media (max-width: 600px) {
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 1.3em;
+      }
+
+      button {
+        padding: 5px 10px;
+        font-size: 0.85em;
+      }
+
+      th, td {
+        font-size: 0.9em;
+        padding: 8px;
+      }
     }
   </style>
 </head>

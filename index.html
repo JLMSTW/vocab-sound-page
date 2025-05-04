@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>招呼語練習</title>
   <style>
     body {
@@ -14,7 +14,7 @@
 
     h1 {
       text-align: center;
-      font-size: 1.6em;
+      font-size: 1.8em;
       margin-top: 20px;
     }
 
@@ -33,12 +33,12 @@
       border-collapse: collapse;
       background-color: white;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      font-size: 0.95em;
+      font-size: 1.1em;
     }
 
     th, td {
       border: 1px solid #ddd;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
@@ -46,20 +46,17 @@
       background-color: #f0f0f0;
     }
 
-    button {
-      padding: 6px 12px;
-      border: none;
-      background-color: #3b82f6;
-      color: white;
-      border-radius: 5px;
+    td.french {
+      color: #1d4ed8; /* 深藍色 */
       cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
     }
 
-    button:hover {
-      background-color: #2563eb;
+    td.french:hover {
+      background-color: #e0ecff;
     }
 
-    /* ✅ 手機：表格可橫向滑動 */
     @media (max-width: 600px) {
       table {
         display: block;
@@ -68,123 +65,105 @@
       }
 
       h1 {
-        font-size: 1.3em;
-      }
-
-      button {
-        padding: 5px 10px;
-        font-size: 0.85em;
+        font-size: 1.4em;
       }
 
       th, td {
-        font-size: 0.9em;
-        padding: 8px;
+        font-size: 1em;
+        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-<h1>🎧 招呼語 - 點擊播放法文發音</h1>
+<h1>🎧 招呼語 - 點擊法文字播放發音</h1>
 
 <div class="controls">
   <label for="rateRange">語速：</label>
-  <input type="range" id="rateRange" min="0.5" max="1.5" value="1" step="0.1">
+  <input type="range" id="rateRange" min="0.5" max="1.5" value="1" step="0.1" />
   <span id="rateValue">1.0x</span>
 </div>
 
 <table>
   <tr>
     <th>中文</th>
-    <th>法文</th>
+    <th>法文（點擊播放）</th>
     <th>中文發音提示</th>
-    <th>播放</th>
   </tr>
   <tr>
     <td>你好</td>
-    <td>Bonjour</td>
+    <td class="french" onclick="speak('Bonjour')">Bonjour</td>
     <td>繃 啾ㄏ～</td>
-    <td><button onclick="speak('Bonjour')">🔊</button></td>
   </tr>
   <tr>
     <td>晚上好</td>
-    <td>Bonsoir</td>
+    <td class="french" onclick="speak('Bonsoir')">Bonsoir</td>
     <td>繃 絲襪～</td>
-    <td><button onclick="speak('Bonsoir')">🔊</button></td>
   </tr>
   <tr>
     <td>晚安</td>
-    <td>Bonne nuit</td>
+    <td class="french" onclick="speak('Bonne nuit')">Bonne nuit</td>
     <td>繃n 女</td>
-    <td><button onclick="speak('Bonne nuit')">🔊</button></td>
   </tr>
   <tr>
     <td>祝你有美好的一天</td>
-    <td>Bonne journée</td>
+    <td class="french" onclick="speak('Bonne journée')">Bonne journée</td>
     <td>繃n 啾ㄏ～ㄋㄟˋ</td>
-    <td><button onclick="speak('Bonne journée')">🔊</button></td>
   </tr>
   <tr>
     <td>祝你晚上愉快</td>
-    <td>Bonne soirée</td>
+    <td class="french" onclick="speak('Bonne soirée')">Bonne soirée</td>
     <td>繃n 絲襪～嘿</td>
-    <td><button onclick="speak('Bonne soirée')">🔊</button></td>
   </tr>
   <tr>
     <td>謝謝</td>
-    <td>Merci</td>
+    <td class="french" onclick="speak('Merci')">Merci</td>
     <td>妹喝 西～</td>
-    <td><button onclick="speak('Merci')">🔊</button></td>
   </tr>
   <tr>
     <td>非常感謝</td>
-    <td>Merci beaucoup</td>
+    <td class="french" onclick="speak('Merci beaucoup')">Merci beaucoup</td>
     <td>妹喝 西  不估</td>
-    <td><button onclick="speak('Merci beaucoup')">🔊</button></td>
   </tr>
   <tr>
     <td>再見</td>
-    <td>Au revoir</td>
+    <td class="french" onclick="speak('Au revoir')">Au revoir</td>
     <td>歐 喝哇～</td>
-    <td><button onclick="speak('Au revoir')">🔊</button></td>
   </tr>
   <tr>
     <td>不客氣</td>
-    <td>De rien</td>
+    <td class="french" onclick="speak('De rien')">De rien</td>
     <td>德 喝央～</td>
-    <td><button onclick="speak('De rien')">🔊</button></td>
   </tr>
   <tr>
     <td>對不起</td>
-    <td>Pardon</td>
+    <td class="french" onclick="speak('Pardon')">Pardon</td>
     <td>爸喝 東</td>
-    <td><button onclick="speak('Pardon')">🔊</button></td>
   </tr>
   <tr>
     <td>不好意思／請問</td>
-    <td>Excusez-moi</td>
+    <td class="french" onclick="speak('Excusez-moi')">Excusez-moi</td>
     <td>Eggs\ㄍㄩ\say\ mwaˋ</td>
-    <td><button onclick="speak('Excusez-moi')">🔊</button></td>
   </tr>
   <tr>
     <td>沒關係</td>
-    <td>C’est pas grave</td>
+    <td class="french" onclick="speak('C’est pas grave')">C’est pas grave</td>
     <td>C’est 巴 卡(喝)V</td>
-    <td><button onclick="speak('C’est pas grave')">🔊</button></td>
   </tr>
 </table>
 
 <script>
   let rate = 1.0;
 
-  document.getElementById("rateRange").addEventListener("input", function() {
+  document.getElementById("rateRange").addEventListener("input", function () {
     rate = parseFloat(this.value);
     document.getElementById("rateValue").textContent = rate.toFixed(1) + "x";
   });
 
   function speak(text) {
     const msg = new SpeechSynthesisUtterance(text);
-    msg.lang = 'fr-FR';
+    msg.lang = "fr-FR";
     msg.rate = rate;
     window.speechSynthesis.speak(msg);
   }

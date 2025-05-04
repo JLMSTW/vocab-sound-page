@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>生字發音練習</title>
+</head>
+<body>
+  <h1>點一下發音 👇</h1>
+  <button onclick="speak('bonjour')">Bonjour</button>
+  <button onclick="speak('merci')">Merci</button>
+  <button onclick="speak('au revoir')">Au revoir</button>
+
+  <script>
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'fr-FR';
+      window.speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>

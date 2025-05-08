@@ -152,6 +152,16 @@
 
 <script>
   let rate = 1.0;
+  let frenchVoice = null;
+
+  // 語音列表載入後自動抓取法語 voice
+  window.speechSynthesis.onvoiceschanged = () => {
+    const voices = window.speechSynthesis.getVoices();
+    frenchVoice = voices.find(v =>
+      v.lang.toLowerCase().startsWith("fr") || v.name.toLowerCase().includes("france")
+    );
+  };
+
   document.getElementById("rateRange").addEventListener("input", function () {
     rate = parseFloat(this.value);
     document.getElementById("rateValue").textContent = rate.toFixed(1) + "x";
@@ -161,6 +171,9 @@
     const msg = new SpeechSynthesisUtterance(text);
     msg.lang = "fr-FR";
     msg.rate = rate;
+    if (frenchVoice) {
+      msg.voice = frenchVoice;
+    }
     window.speechSynthesis.speak(msg);
   }
 
@@ -171,6 +184,3 @@
     event.target.classList.add('active');
   }
 </script>
-
-</body>
-</html>

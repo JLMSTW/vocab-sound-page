@@ -2,160 +2,132 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>招呼語練習</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JLMS 法語互動語音表</title>
   <style>
+    :root {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --accent: #4FC3F7;
+      --hover: #81D4FA;
+      --tab-bg: #1E1E1E;
+    }
     body {
+      background-color: var(--bg);
+      color: var(--text);
       font-family: sans-serif;
-      background-color: #f9f9f9;
-      padding: 10px;
       margin: 0;
+      padding: 0;
     }
-
-    h1 {
-      text-align: center;
-      font-size: 1.8em;
-      margin-top: 20px;
+    header {
+      padding: 1rem;
+      background-color: var(--tab-bg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
-
+    header button {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    header button.active, header button:hover {
+      background-color: var(--accent);
+      color: #000;
+    }
     .controls {
       text-align: center;
-      margin: 15px 0;
+      margin: 20px;
     }
-
-    .controls label {
-      margin-right: 5px;
-      font-weight: bold;
-    }
-
     table {
-      width: 100%;
+      width: 95%;
+      margin: 10px auto;
       border-collapse: collapse;
-      background-color: white;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      font-size: 1.1em;
+      background-color: #1E1E1E;
     }
-
     th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #333;
       padding: 12px;
       text-align: center;
     }
-
     th {
-      background-color: #f0f0f0;
+      background-color: #222;
     }
-
     td.french {
-      color: #1d4ed8; /* 深藍色 */
+      color: var(--accent);
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.2s;
     }
-
     td.french:hover {
-      background-color: #e0ecff;
+      background-color: #1e3a5f;
     }
-
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
     @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
       table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-
-      h1 {
-        font-size: 1.4em;
-      }
-
-      th, td {
-        font-size: 1em;
-        padding: 10px;
+        font-size: 0.9em;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <button onclick="showSection('greetings')" class="active">招呼語</button>
+    <button onclick="showSection('praise')">讚美語</button>
+    <button onclick="showSection('phrases')">常用短語</button>
+  </header>
+  <div class="controls">
+    <label for="rateRange">語速：</label>
+    <input type="range" id="rateRange" min="0.5" max="1.5" value="1" step="0.1" />
+    <span id="rateValue">1.0x</span>
+  </div>
 
-<h1>🎧 招呼語 - 點擊法文字播放發音</h1>
+  <div id="greetings" class="section active">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>你好</td><td class="french" onclick="speak('Bonjour')">Bonjour</td><td>繃 啾ㄏ～</td></tr>
+      <tr><td>晚上好</td><td class="french" onclick="speak('Bonsoir')">Bonsoir</td><td>繃 絲襪～</td></tr>
+      <tr><td>晚安</td><td class="french" onclick="speak('Bonne nuit')">Bonne nuit</td><td>繃n 女</td></tr>
+      <tr><td>祝你有美好的一天</td><td class="french" onclick="speak('Bonne journée')">Bonne journée</td><td>繃n 啾ㄏ～ㄋㄟˋ</td></tr>
+      <tr><td>祝你晚上愉快</td><td class="french" onclick="speak('Bonne soirée')">Bonne soirée</td><td>繃n 絲襪～嘿</td></tr>
+    </table>
+  </div>
 
-<div class="controls">
-  <label for="rateRange">語速：</label>
-  <input type="range" id="rateRange" min="0.5" max="1.5" value="1" step="0.1" />
-  <span id="rateValue">1.0x</span>
-</div>
+  <div id="praise" class="section">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>這很好吃！</td><td class="french" onclick="speak('C\'est délicieux')">C'est délicieux</td><td>C'est  ᗪㄟ̄ 力 啾</td></tr>
+      <tr><td>太漂亮了！</td><td class="french" onclick="speak('C\'est très beau')">C'est très beau</td><td>C'est ㄘㄨㄟ ㄅㄡˋ</td></tr>
+      <tr><td>您很親切</td><td class="french" onclick="speak('Vous êtes très gentil')">Vous êtes très gentil</td><td>Vu  盧 t ㄘㄨㄟ 君低</td></tr>
+      <tr><td>好可愛</td><td class="french" onclick="speak('C\'est mignon')">C'est mignon</td><td>C'est 咪ㄋㄡㄥˋ</td></tr>
+    </table>
+  </div>
 
-<table>
-  <tr>
-    <th>中文</th>
-    <th>法文（點擊播放）</th>
-    <th>中文發音提示</th>
-  </tr>
-  <tr>
-    <td>你好</td>
-    <td class="french" onclick="speak('Bonjour')">Bonjour</td>
-    <td>繃 啾ㄏ～</td>
-  </tr>
-  <tr>
-    <td>晚上好</td>
-    <td class="french" onclick="speak('Bonsoir')">Bonsoir</td>
-    <td>繃 絲襪～</td>
-  </tr>
-  <tr>
-    <td>晚安</td>
-    <td class="french" onclick="speak('Bonne nuit')">Bonne nuit</td>
-    <td>繃n 女</td>
-  </tr>
-  <tr>
-    <td>祝你有美好的一天</td>
-    <td class="french" onclick="speak('Bonne journée')">Bonne journée</td>
-    <td>繃n 啾ㄏ～ㄋㄟˋ</td>
-  </tr>
-  <tr>
-    <td>祝你晚上愉快</td>
-    <td class="french" onclick="speak('Bonne soirée')">Bonne soirée</td>
-    <td>繃n 絲襪～嘿</td>
-  </tr>
-  <tr>
-    <td>謝謝</td>
-    <td class="french" onclick="speak('Merci')">Merci</td>
-    <td>妹喝 西～</td>
-  </tr>
-  <tr>
-    <td>非常感謝</td>
-    <td class="french" onclick="speak('Merci beaucoup')">Merci beaucoup</td>
-    <td>妹喝 西  不估</td>
-  </tr>
-  <tr>
-    <td>再見</td>
-    <td class="french" onclick="speak('Au revoir')">Au revoir</td>
-    <td>歐 喝哇～</td>
-  </tr>
-  <tr>
-    <td>不客氣</td>
-    <td class="french" onclick="speak('De rien')">De rien</td>
-    <td>德 喝央～</td>
-  </tr>
-  <tr>
-    <td>對不起</td>
-    <td class="french" onclick="speak('Pardon')">Pardon</td>
-    <td>爸喝 東</td>
-  </tr>
-  <tr>
-    <td>不好意思／請問</td>
-    <td class="french" onclick="speak('Excusez-moi')">Excusez-moi</td>
-    <td>Eggs\ㄍㄩ\say\ mwaˋ</td>
-  </tr>
-  <tr>
-    <td>沒關係</td>
-    <td class="french" onclick="speak('C’est pas grave')">C’est pas grave</td>
-    <td>C’est 巴 卡(喝)V</td>
-  </tr>
-</table>
+  <div id="phrases" class="section">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>我是台灣人</td><td class="french" onclick="speak('Je suis Taïwanais')">Je suis Taïwanais</td><td>揪水 台語</td></tr>
+      <tr><td>你是演員</td><td class="french" onclick="speak('Tu es acteur')">Tu es acteur</td><td>ㄉㄩˋ ㄟ 阿啾</td></tr>
+      <tr><td>他很有名</td><td class="french" onclick="speak('Il est très connu')">Il est très connu</td><td>姨勒 ㄘㄨㄟ ㄍㄨ ㄋㄩ</td></tr>
+      <tr><td>她是演員</td><td class="french" onclick="speak('Elle est actrice')">Elle est actrice</td><td>ㄟ勒 阿克垂斯</td></tr>
+    </table>
+  </div>
 
 <script>
   let rate = 1.0;
-
   document.getElementById("rateRange").addEventListener("input", function () {
     rate = parseFloat(this.value);
     document.getElementById("rateValue").textContent = rate.toFixed(1) + "x";
@@ -166,6 +138,13 @@
     msg.lang = "fr-FR";
     msg.rate = rate;
     window.speechSynthesis.speak(msg);
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('header button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
   }
 </script>
 

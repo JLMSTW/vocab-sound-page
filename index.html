@@ -154,9 +154,15 @@
   let rate = 1.0;
   let frenchVoice = null;
 
-  // 語音列表載入後自動抓取法語 voice，並提示是否支援法語語音
-  window.speechSynthesis.onvoiceschanged = () => {
-    const voices = window.speechSynthesis.getVoices();
+  // 初始化語音清單（避免有些瀏覽器沒觸發 onvoiceschanged）
+  if (speechSynthesis.getVoices().length === 0) {
+    speechSynthesis.addEventListener('voiceschanged', initVoices);
+  } else {
+    initVoices();
+  }
+
+  function initVoices() {
+    const voices = speechSynthesis.getVoices();
     frenchVoice = voices.find(v =>
       v.lang.toLowerCase().startsWith("fr") || v.name.toLowerCase().includes("france")
     );
@@ -170,7 +176,7 @@
       warning.style.color = "#f2c94c";
       document.querySelector(".controls").appendChild(warning);
     }
-  };
+  }
 
   document.getElementById("rateRange").addEventListener("input", function () {
     rate = parseFloat(this.value);

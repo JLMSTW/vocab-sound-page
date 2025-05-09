@@ -152,32 +152,6 @@
 
 <script>
   let rate = 1.0;
-  let frenchVoice = null;
-
-  // 初始化語音清單（避免有些瀏覽器沒觸發 onvoiceschanged）
-  if (speechSynthesis.getVoices().length === 0) {
-    speechSynthesis.addEventListener('voiceschanged', initVoices);
-  } else {
-    initVoices();
-  }
-
-  function initVoices() {
-    const voices = speechSynthesis.getVoices();
-    frenchVoice = voices.find(v =>
-      v.lang.toLowerCase().startsWith("fr") || v.name.toLowerCase().includes("france")
-    );
-
-    const hasFrench = voices.some(v => v.lang.toLowerCase().startsWith("fr"));
-    if (!hasFrench) {
-      const warning = document.createElement("p");
-      warning.innerHTML = "⚠️ 若聽到英文發音，請使用 <strong>Google Chrome</strong>，並確認您的裝置支援法語語音（fr-FR）。";
-      warning.style.textAlign = "center";
-      warning.style.fontSize = "0.9em";
-      warning.style.color = "#f2c94c";
-      document.querySelector(".controls").appendChild(warning);
-    }
-  }
-
   document.getElementById("rateRange").addEventListener("input", function () {
     rate = parseFloat(this.value);
     document.getElementById("rateValue").textContent = rate.toFixed(1) + "x";
@@ -187,9 +161,6 @@
     const msg = new SpeechSynthesisUtterance(text);
     msg.lang = "fr-FR";
     msg.rate = rate;
-    if (frenchVoice) {
-      msg.voice = frenchVoice;
-    }
     window.speechSynthesis.speak(msg);
   }
 
@@ -200,3 +171,6 @@
     event.target.classList.add('active');
   }
 </script>
+
+</body>
+</html>

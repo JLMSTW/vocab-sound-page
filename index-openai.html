@@ -166,7 +166,7 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          text: text,
+          text: `[French] ${text}`,   // 告訴 TTS 這是法文
           speed: rate
         })
       });

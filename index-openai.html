@@ -101,6 +101,7 @@
       <tr><td>你好</td><td class="french" onclick="speak('Bonjour')">Bonjour</td><td>繃 啾ㄏ～</td></tr>
       <tr><td>晚上好good evening</td><td class="french" onclick="speak('Bonsoir')">Bonsoir</td><td>繃 絲襪～</td></tr>
       <tr><td>晚安good night</td><td class="french" onclick="speak('Bonne nuit')">Bonne nuit</td><td>繃n 女</td></tr>
+      <tr><td>很高興認識你！🤝</td><td class="french" onclick="speak('Enchanté')">Enchanté</td><td>翁胸ㄉㄟˇ</td></tr>
       <tr><td>祝你有美好的一天 🌞</td><td class="french" onclick="speak('Bonne journée')">Bonne journée</td><td>繃n 啾ㄏ～ㄋㄟˋ</td></tr>
       <tr><td>祝你晚上愉快 🌙</td><td class="french" onclick="speak('Bonne soirée')">Bonne soirée</td><td>繃n 絲襪～嘿</td></tr>
       <tr><td>謝謝 🙏</td><td class="french" onclick="speak('Merci')">Merci</td><td>妹喝 西～</td></tr>
@@ -159,7 +160,7 @@
 
   async function speak(text) {
     try {
-      const response = await fetch("https://你的-proxy.vercel.app/api/speak", {
+      const response = await fetch("https://openai-tts-proxy.vercel.app/api/speak", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JLMS 法語互動語音表</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --accent: #4FC3F7;
+      --hover: #81D4FA;
+      --tab-bg: #1E1E1E;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 1rem;
+      background-color: var(--tab-bg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    header button {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    header button.active, header button:hover {
+      background-color: var(--accent);
+      color: #000;
+    }
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+    table {
+      width: 95%;
+      margin: 10px auto;
+      border-collapse: collapse;
+      background-color: #1E1E1E;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #222;
+    }
+    td.french {
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: bold;
+    }
+    td.french:hover {
+      background-color: #1e3a5f;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+      table {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="showSection('greetings')" class="active">🎧 招呼語</button>
+    <button onclick="showSection('praise')">🌟 讚美語</button>
+    <button onclick="showSection('phrases')">🗣️ 常用短語</button>
+  </header>
+  <div class="controls">
+    <label for="rateRange">語速：</label>
+    <input type="range" id="rateRange" min="0.5" max="1.5" value="1" step="0.1" />
+    <span id="rateValue">1.0x</span>
+  </div>
+
+  <div id="greetings" class="section active">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>你好</td><td class="french" onclick="speak('Bonjour')">Bonjour</td><td>繃 啾ㄏ～</td></tr>
+      <tr><td>晚上好good evening</td><td class="french" onclick="speak('Bonsoir')">Bonsoir</td><td>繃 絲襪～</td></tr>
+      <tr><td>晚安good night</td><td class="french" onclick="speak('Bonne nuit')">Bonne nuit</td><td>繃n 女</td></tr>
+      <tr><td>祝你有美好的一天 🌞</td><td class="french" onclick="speak('Bonne journée')">Bonne journée</td><td>繃n 啾ㄏ～ㄋㄟˋ</td></tr>
+      <tr><td>祝你晚上愉快 🌙</td><td class="french" onclick="speak('Bonne soirée')">Bonne soirée</td><td>繃n 絲襪～嘿</td></tr>
+      <tr><td>謝謝 🙏</td><td class="french" onclick="speak('Merci')">Merci</td><td>妹喝 西～</td></tr>
+      <tr><td>非常感謝 ❤️</td><td class="french" onclick="speak('Merci beaucoup')">Merci beaucoup</td><td>妹喝 西 不估</td></tr>
+      <tr><td>再見 👋</td><td class="french" onclick="speak('Au revoir')">Au revoir</td><td>歐 喝哇～</td></tr>
+      <tr><td>不客氣 🤗</td><td class="french" onclick="speak('De rien')">De rien</td><td>德 喝央～</td></tr>
+      <tr><td>對不起🙇</td><td class="french" onclick="speak('Désolé')">Désolé</td><td>ㄉㄟˇ搜累</td></tr>
+      <tr><td>抱歉 😕</td><td class="french" onclick="speak('Pardon')">Pardon</td><td>爸喝 東</td></tr>
+      <tr><td>不好意思／請問 🤚</td><td class="french" onclick="speak('Excusezmoi')">Excusez-moi</td><td>Eggs＼ㄍㄩ＼say＼mwaˋ</td></tr>
+      <tr><td>沒關係 😊</td><td class="french" onclick="speak('C’est pas grave')">C’est pas grave</td><td>C’est 巴 卡(喝)V</td></tr>
+    </table>
+  </div>
+
+  <div id="praise" class="section">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>這很好吃！🍽️</td><td class="french" onclick="speak('C’est délicieux')">C’est délicieux</td><td>C’est ㄉㄟˇ 力 啾</td></tr>
+      <tr><td>超好吃／爆好吃 😋</td><td class="french" onclick="speak('C’est trop bon')">C’est trop bon</td><td>C’est 偷(嗯) 繃</td></tr>
+      <tr><td>太漂亮了！😍</td><td class="french" onclick="speak('C’est très beau')">C’est très beau</td><td>C’est ㄊ(喝)ㄟ bo!</td></tr>
+      <tr><td>您很優雅！☺️</td><td class="french" onclick="speak('Vous êtes très élègante')">Vous êtes très élègante</td><td>Vu 賊t ㄊ(喝)ㄟ ㄟ 勒 共t</td></tr> 
+      <tr><td>您很親切,你人真好！🥰</td><td class="french" onclick="speak('Vous êtes très gentil')">Vous êtes très gentil</td><td>Vu 賊t ㄊ(喝)ㄟ 囧低 </td></tr>
+      <tr><td>好可愛 🧸</td><td class="french" onclick="speak('C’est mignon')">C’est mignon</td><td>C’est 咪ㄋㄧㄡˋ</td></tr>
+      <tr><td>我很喜歡這個 ❤️</td><td class="french" onclick="speak('J’aime beaucoup ça')">J’aime beaucoup ça</td><td>捲m 不估 ㄙㄚ</td></tr>
+      <tr><td>哇，好棒！😲</td><td class="french" onclick="speak('Super!')">Super!</td><td>哇！ㄙㄩ 貝喝</td></tr>
+      <tr><td>超讚的服務 💼</td><td class="french" onclick="speak('Service impeccable')">Service impeccable</td><td>Service 增倍尬ㄅ了</td></tr>
+      <tr><td>您真的很專業 👩‍💼</td><td class="french" onclick="speak('Vous êtes très professionnel')">Vous êtes très professionnel</td><td>Vu賊特t  ㄊ(喝)ㄟ  頗(喝)飛雄內了</td></tr>
+    </table>
+  </div>
+
+  <div id="phrases" class="section">
+    <table>
+      <tr><th>中文</th><th>法文（點擊播放）</th><th>中文發音提示</th></tr>
+      <tr><td>我是... </td><td class="french" onclick="speak('Je suis')">Je suis...</td><td>揪水 台語</td></tr>
+      <tr><td>我是台灣人 🇹🇼</td><td class="french" onclick="speak('Je suis Taïwanais')">Je suis Taïwanais</td><td>揪水 呆灣內</td></tr>
+      <tr><td>我是演員 🎭</td><td class="french" onclick="speak('Je suis acteur')">Je suis acteur</td><td>揪水 阿k特喝</td></tr>
+      <tr><td>你是...</td><td class="french" onclick="speak('Tu es')">Tu es...</td><td>ㄉㄩˋ ㄟ ...</td></tr>
+      <tr><td>他是...</td><td class="french" onclick="speak('Il est')">Il est...</td><td>姨勒</td></tr>
+      <tr><td>他是台灣人</td><td class="french" onclick="speak('Il est Taïwanais')">Il est Taïwanais</td><td>姨勒 呆灣內</td></tr>
+      <tr><td>他很有名 📺</td><td class="french" onclick="speak('Il est très connu')">Il est très connu</td><td>姨勒 ㄊ(喝)ㄟ 宮女 </td></tr>
+      <tr><td>她是...</td><td class="french" onclick="speak('Elle est')">Elle est</td><td>ㄟ勒</td></tr>
+      <tr><td>她是台灣人</td><td class="french" onclick="speak('Elle est Taïwanaise')">Elle est Taïwanaise</td><td>ㄟ勒 呆灣內斯</td></tr>
+      <tr><td>她是演員 👩‍🎤</td><td class="french" onclick="speak('Elle est actrice')">Elle est actrice</td><td>ㄟ勒 阿k提斯</td></tr>
+      <tr><td>她很有名 ✨</td><td class="french" onclick="speak('Elle est très connue')">Elle est très connue</td><td>ㄟ勒 ㄊ(喝)ㄟ 宮女</td></tr>
+      <tr><td>我們是台灣人</td><td class="french" onclick="speak('On est taïwanais')">On est taïwanais</td><td>翁內 呆灣內</td></tr>
+      <tr><td>您是... / 你們是...</td><td class="french" onclick="speak('Vous êtes')">Vous êtes</td><td>Vu 賊t</td></tr>
+      <tr><td>他們是...</td><td class="french" onclick="speak('Ils sont')">Ils sont</td><td>姨了送</td></tr>
+    </table>
+  </div>
+
+<script>
+  let rate = 1.0;
+  document.getElementById("rateRange").addEventListener("input", function () {
+    rate = parseFloat(this.value);
+    document.getElementById("rateValue").textContent = rate.toFixed(1) + "x";
+  });
+
+  async function speak(text) {
+    try {
+      const response = await fetch("https://你的-proxy.vercel.app/api/speak", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          text: text,
+          speed: rate
+        })
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error("語音請求失敗:", error);
+        return;
+      }
+
+      const audioData = await response.arrayBuffer();
+      const blob = new Blob([audioData], { type: "audio/mpeg" });
+      const audioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (err) {
+      console.error("語音播放錯誤:", err);
+    }
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('header button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
